@@ -9,6 +9,16 @@ body {
     background: #ffffff;
     overflow-x: hidden;
     color: #1d1d1f;
+    background-image: url('../images/background.png');
+s
+    /* Replace with your image path */
+    background-repeat: repeat;
+    /* Prevents image from repeating */
+    background-size: cover;
+    /* Scales image to cover the entire background */
+    background-attachment: fixed;
+    /* Keeps image fixed when scrolling */
+
 }
 
 /* Navigation Bar */
@@ -91,9 +101,6 @@ nav {
     background: rgba(255, 140, 0, 0.05);
     color: orange;
 }
-
-
-
 
 .nav-item a::after {
     content: "";
@@ -622,7 +629,7 @@ nav {
     flex-direction: column;
     gap: 0.5rem;
     background: rgba(255, 255, 255, 0.65);
-        backdrop-filter: blur(1.8px);
+    backdrop-filter: blur(1.8px);
     position: fixed;
     top: 70px;
     left: 0;
@@ -777,6 +784,23 @@ nav {
     color: #000000;
 }
 
+
+
+
+
+/*lol*/
+.banner {
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+
 /*內容*/
 .main-content {
     margin-left: 22%;
@@ -787,7 +811,7 @@ nav {
 
 .big-title {
 
-      font-size: clamp(50px, 4vw, 62.6px);
+    font-size: clamp(50px, 4vw, 62.6px);
 
     margin-top: 80px;
     margin-bottom: 70px;
@@ -831,6 +855,8 @@ nav {
     margin-right: auto;
 }
 
+
+
 /* Side navigation 連結 */
 
 .side-nav {
@@ -853,7 +879,7 @@ nav {
     color: #1d1d1f;
     border: 1px solid #1d1d1f;
     padding: 1rem;
-    border-radius: 20px ;
+    border-radius: 20px;
 }
 
 .side-link:hover {
@@ -866,7 +892,7 @@ nav {
     color: white;
     border: 2px solid, orange;
     transform: translateY(-3px);
-    border-radius: 20px ;
+    border-radius: 20px;
 }
 
 
@@ -895,5 +921,253 @@ html {
     width: 1200;
     margin-left: 400px;
     height: 1200;
-    size: 200%;
+
+}
+
+
+/* =====================
+   Team Page Cards (Members / Instructors / Outreach)
+   ===================== */
+
+/* Section spacing & headings */
+.members-section,
+.instructors-section,
+.outreach-section {
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+.members-section h2,
+.instructors-section h2,
+.outreach-section h2 {
+    font-size: clamp(28px, 3.2vw, 36px);
+    font-weight: 800;
+    margin: 24px 0 20px;
+}
+
+/* Shared grid container */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+/* --------- Flip Cards (Members) --------- */
+.flip-card {
+    background: transparent;
+    width: 100%;
+    height: 360px;
+    /* fixed height for consistent grid */
+    perspective: 1000px;
+    /* enables 3D flip */
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease;
+    transform-style: preserve-3d;
+}
+
+/* flip on hover (desktop) */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    background: #fff;
+}
+
+/* Front (basic info) */
+.flip-card-front img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+.flip-card-front h3 {
+    font-size: 1.1rem;
+    margin: 12px 14px 4px;
+}
+
+.flip-card-front p {
+    margin: 2px 14px;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* Back (long text, scrollable) */
+.flip-card-back {
+    transform: rotateY(180deg);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.flip-card-back h3 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+.flip-card-back p {
+    line-height: 1.5;
+    color: #444;
+    overflow: auto;
+    /* 因為字很長 → 內容可在卡片內滾動 */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* --------- Simple Cards (Instructors / Outreach) --------- */
+.simple-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    padding: 12px;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.simple-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.10);
+}
+
+.simple-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+.simple-card h3 {
+    font-size: 1.05rem;
+    margin-top: 10px;
+}
+
+.simple-card p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* --------- Responsive Tweaks --------- */
+@media (max-width: 768px) {
+    .flip-card {
+        height: 320px;
+    }
+
+    .flip-card-front img {
+        height: 130px;
+    }
+
+    .simple-card img {
+        height: 160px;
+    }
+}
+
+@media (max-width: 520px) {
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Team page: main-content hero image spacing */
+.hero-image {
+    margin-top: 10px;
+    margin-bottom: 28px;
+    min-width: 100%;
+    z-index: -11;
+}
+
+/* =====================
+   HERO (Team) reveal on load
+   ===================== */
+.hero.hero--team {
+    position: relative;
+    margin-top: 90px;
+    /* clear the fixed navbar */
+    border-radius: 12px;
+    overflow: hidden;
+    outline: 4px solid rgba(153, 102, 255, 0.75);
+    /* purple border like screenshot */
+}
+
+.hero.hero--team .hero__img {
+    display: block;
+    width: 100%;
+    height: clamp(240px, 40vw, 420px);
+    /* responsive banner height */
+    object-fit: cover;
+    transform: scale(1.04);
+    /* start slightly zoomed */
+    filter: brightness(0.7);
+    /* start darker under title */
+    transition: transform 1200ms ease, filter 1200ms ease;
+}
+
+/* dark overlay that fades away */
+.hero.hero--team .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+    transition: opacity 1000ms ease;
+}
+
+/* centered big title shown at start */
+.hero.hero--team .hero__title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: clamp(38px, 9vw, 120px);
+    line-height: 1;
+    font-weight: 900;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    opacity: 1;
+    transition: opacity 900ms ease, transform 900ms ease;
+}
+
+/* Reveal state — JS will add .is-revealed on load */
+.hero.hero--team.is-revealed .hero__title {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 12px));
+}
+
+.hero.hero--team.is-revealed .hero__overlay {
+    opacity: 0;
+}
+
+.hero.hero--team.is-revealed .hero__img {
+    transform: scale(1);
+    filter: none;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .hero.hero--team .hero__img,
+    .hero.hero--team .hero__overlay,
+    .hero.hero--team .hero__title {
+        transition-duration: 1ms !important;
+    }
 }
